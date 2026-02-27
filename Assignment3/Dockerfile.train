@@ -1,0 +1,45 @@
+# ==========================
+# Base Image
+# ==========================
+FROM python:3.10-slim
+
+# ==========================
+# Environment Variables
+# ==========================
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# ==========================
+# Set Working Directory
+# ==========================
+WORKDIR /app
+
+# ==========================
+# Install System Dependencies
+# ==========================
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# ==========================
+# Copy Requirements
+# ==========================
+COPY src/requirements.txt .
+
+# ==========================
+# Install Python Dependencies
+# ==========================
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+# ==========================
+# Copy Project Files
+# ==========================
+COPY . .
+
+# ==========================
+# Default Command (Training)
+# ==========================
+CMD ["python", "src/train.py"]
