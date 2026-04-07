@@ -1,0 +1,8 @@
+torch>=2.0.0
+torchvision>=0.15.0
+adversarial-robustness-toolbox[pytorch]>=1.17.0
+wandb>=0.16.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+Pillow>=9.0.0
+tqdm>=4.65.0
