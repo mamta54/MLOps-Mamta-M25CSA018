@@ -1,0 +1,22 @@
+FROM pytorch/pytorch:2.2.0-cuda12.1-cudnn8-runtime
+
+WORKDIR /app
+
+COPY . /app
+
+RUN pip install --upgrade pip
+RUN pip install torch==2.4.0 torchvision --upgrade
+RUN pip install \
+    torchvision \
+    transformers \
+    datasets \
+    peft \
+    wandb \
+    optuna \
+    matplotlib \
+    scikit-learn \
+    tqdm \
+    adversarial-robustness-toolbox \
+    huggingface_hub
+
+CMD ["bash"]
